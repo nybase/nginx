@@ -18,13 +18,44 @@ NGX_HC=ngx_healthcheck_module-20190322
 LUAJIT=luajit2-20190328
 
 cd $(dirname $0)
+basedir=$(pwd)
 
 mkdir -p ${PREFIX_TENGINE}/{html,temp,logs,modules,dso} $LOG_DIR
 chown nobody:nobody -R ${PREFIX_TENGINE}/temp  $LOG_DIR
 
 rm -rf build/*
-mkdir -p build
+mkdir -p bundle build
 
+cd $basedir/bundle
+test -f $OPENRESTY.tar.gz || wget -c https://openresty.org/download/$OPENRESTY.tar.gz
+
+COMMITID=d1dd875
+GIRURL=https://github.com/alibaba/tengine.git
+GITDIR=tengine-master 
+cd $basedir/bundle
+test -f bundle/$TENGINE.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
+cd $GITDIR
+git fetch
+git checkout $COMMITID
+
+COMMITID=46d8555
+GIRURL=https://github.com/vozlt/nginx-module-vts.git
+GITDIR=nginx-module-vts-master
+cd $basedir/bundle
+test -f bundle/$NGX_VTS.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
+cd $GITDIR
+git fetch
+git checkout $COMMITID
+
+
+COMMITID=d4272c8
+GIRURL=https://github.com/zhouchangxun/ngx_healthcheck_module.git
+GITDIR=ngx_healthcheck_module-master
+cd $basedir/bundle
+test -f bundle/$NGX_HC.zip  || test -d $GITDIR || git clone $GIRURL $GITDIR
+cd $GITDIR
+git fetch
+git checkout $COMMITID
 
 
 #cp -r bundle/$TENGINE.zip build
@@ -32,34 +63,11 @@ mkdir -p build
 #cp -r bundle/$OPENRESTY.tar.gz build
 #cp -r bundle/$NGX_VTS.zip build
 #cp -t build -r bundle/$NGX_HC.zip  bundle/$LUAJIT.zip
-cp -t build -r bundle/*.zip bundle/*.gz
-
-
+cd $basedir
+cp -t build -r bundle/*.zip bundle/*.gz bundle/*-master
 
 cd build
 workdir=$(pwd)
-
-COMMITID=d1dd875
-cd $workdir
-git clone https://github.com/alibaba/tengine.git tengine-master 
-cd tengine-master 
-git checkout $COMMITID
-
-cd $workdir
-test -f $OPENRESTY.tar.gz || wget -c https://openresty.org/download/$OPENRESTY.tar.gz
-
-COMMITID=46d8555
-cd $workdir
-git clone https://github.com/vozlt/nginx-module-vts.git nginx-module-vts-master
-cd nginx-module-vts-master
-git checkout $COMMITID
-
-
-COMMITID=d4272c8
-cd $workdir
-git clone https://github.com/zhouchangxun/ngx_healthcheck_module.git ngx_healthcheck_module-master
-cd ngx_healthcheck_module-master
-git checkout $COMMITID
 
 cd $workdir
 
