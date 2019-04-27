@@ -64,7 +64,7 @@ git checkout $COMMITID
 #cp -r bundle/$NGX_VTS.zip build
 #cp -t build -r bundle/$NGX_HC.zip  bundle/$LUAJIT.zip
 cd $basedir
-cp -t build -r bundle/*.zip bundle/*.gz bundle/*-master
+cp -t build -r bundle/$TENGINE.zip bundle/$OPENRESTY.tar.gz bundle/$NGX_VTS.zip bundle/$NGX_HC.zip bundle/*-master
 
 cd build
 workdir=$(pwd)
