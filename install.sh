@@ -33,7 +33,7 @@ COMMITID=d1dd875
 GIRURL=https://github.com/alibaba/tengine.git
 GITDIR=tengine-master 
 cd $basedir/bundle
-test -f bundle/$TENGINE.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
+test -f $TENGINE.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
 cd $GITDIR
 git fetch
 git checkout $COMMITID
@@ -42,7 +42,7 @@ COMMITID=46d8555
 GIRURL=https://github.com/vozlt/nginx-module-vts.git
 GITDIR=nginx-module-vts-master
 cd $basedir/bundle
-test -f bundle/$NGX_VTS.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
+test -f $NGX_VTS.zip || test -d $GITDIR || git clone $GIRURL $GITDIR
 cd $GITDIR
 git fetch
 git checkout $COMMITID
@@ -52,7 +52,7 @@ COMMITID=d4272c8
 GIRURL=https://github.com/zhouchangxun/ngx_healthcheck_module.git
 GITDIR=ngx_healthcheck_module-master
 cd $basedir/bundle
-test -f bundle/$NGX_HC.zip  || test -d $GITDIR || git clone $GIRURL $GITDIR
+test -f $NGX_HC.zip  || test -d $GITDIR || git clone $GIRURL $GITDIR
 cd $GITDIR
 git fetch
 git checkout $COMMITID
