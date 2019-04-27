@@ -12,7 +12,8 @@ COPY --from=builder /app  /app/
 
 RUN apt-get update ; apt-get install -y libjemalloc-dev ; \
     mkdir -p /etc/service/nginx ; \
-    bash -c 'echo -e "#!/bin/bash\nexec /app/nginx/sbin/nginx -g \"daemon off;\"" > /etc/service/nginx/run' ;
+    bash -c 'echo -e "#!/bin/bash\nexec /app/nginx/sbin/nginx -g \"daemon off;\"" > /etc/service/nginx/run' ; \
+    chmod 755 /etc/service/nginx/run
 
 EXPOSE 80/tcp 443/tcp
 
