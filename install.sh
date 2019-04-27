@@ -177,7 +177,7 @@ test -f nginx.logrotate && \cp -f nginx.logrotate /etc/logrotate.d/nginx
 test -f /bin/systemctl && systemctl daemon-reload
 which chkconfig && chkconfig nginx on
 test -f /bin/systemctl && systemctl enable nginx
-
+echo "[ok] build new tengine"
 
 # start service
 #which service && service nginx start
