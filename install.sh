@@ -2,9 +2,9 @@
 
 set -o -x
 
-test -f /usr/bin/yum     && yum install -y libatomic_ops-devel jemalloc-devel openssl-devel unzip pcre-devel pcre2-devel GeoIP-devel
+test -f /usr/bin/yum     && yum install -y git libatomic_ops-devel jemalloc-devel openssl-devel unzip pcre-devel pcre2-devel GeoIP-devel
 test -f /usr/bin/apt-get &&  apt-get update
-test -f /usr/bin/apt-get &&  apt-get install -y libgeoip-dev libatomic-ops-dev libjemalloc-dev libssl-dev unzip build-essential libpcre3-dev xz-utils perl zlib1g-dev
+test -f /usr/bin/apt-get &&  apt-get install -y git libgeoip-dev libatomic-ops-dev libjemalloc-dev libssl-dev unzip build-essential libpcre3-dev xz-utils perl zlib1g-dev
 
 TENGINE=tengine-20190408
 OPENRESTY=openresty-1.15.8.1rc1
