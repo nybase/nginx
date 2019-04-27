@@ -169,8 +169,9 @@ $PREFIX_TENGINE/sbin/nginx -v
 cd $workdir/..
 
 # copy logrotate
-test -d /etc/systemd/system && cp nginx.service /etc/systemd/system || cp nginx.init /etc/init.d/nginx
-\cp -f nginx.logrotate /etc/logrotate.d/nginx
+test -f nginx.service   && test -d /etc/systemd/system && cp nginx.service /etc/systemd/system 
+test -f nginx.init      && test -d /etc/init.d/ && cp nginx.init /etc/init.d/nginx
+test -f nginx.logrotate && \cp -f nginx.logrotate /etc/logrotate.d/nginx
 
 # enable service
 test -f /bin/systemctl && systemctl daemon-reload
