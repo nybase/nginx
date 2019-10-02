@@ -29,7 +29,7 @@ mkdir -p bundle build
 cd $basedir/bundle
 test -f $OPENRESTY.tar.gz || wget -c https://openresty.org/download/$OPENRESTY.tar.gz
 
-COMMITID=d1dd875
+COMMITID=7e581f9
 GIRURL=https://github.com/alibaba/tengine.git
 GITDIR=tengine-master 
 cd $basedir/bundle
